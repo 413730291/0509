@@ -30,28 +30,28 @@ function setup() {
 function draw() {
   image(video, 0, 0);
 
-  // Ensure at least one hand is detected
+  // 確保至少檢測到一隻手
   if (hands.length > 0) {
     for (let hand of hands) {
       if (hand.confidence > 0.1) {
-        // Loop through keypoints and draw circles
+        // 繪製手部關鍵點
         for (let i = 0; i < hand.keypoints.length; i++) {
           let keypoint = hand.keypoints[i];
 
-          // Color-code based on left or right hand
+          // 根據左右手設置顏色
           if (hand.handedness == "Left") {
-            fill(255, 0, 255);
+            fill(255, 0, 255); // 左手為紫色
           } else {
-            fill(255, 255, 0);
+            fill(255, 255, 0); // 右手為黃色
           }
 
           noStroke();
           circle(keypoint.x, keypoint.y, 16);
         }
 
-        // Draw lines connecting keypoints in groups
-        stroke(0); // Set line color
-        strokeWeight(2); // Set line thickness
+        // 繪製連接 keypoints 的線條
+        stroke(0); // 設置線條顏色為黑色
+        strokeWeight(2); // 設置線條粗細
 
         // Connect keypoints 0 to 4
         for (let i = 0; i < 4; i++) {
