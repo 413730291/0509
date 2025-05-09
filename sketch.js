@@ -4,8 +4,6 @@
 let video;
 let handPose;
 let hands = [];
-let circleX, circleY; // 圓的初始位置
-let circleRadius = 50; // 圓的半徑
 
 function preload() {
   // Initialize HandPose model with flipped video input
@@ -24,10 +22,6 @@ function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO, { flipped: true });
   video.hide();
-
-  // 圓的初始位置設置在視窗中間
-  circleX = width / 2;
-  circleY = height / 2;
 
   // Start detecting hands
   handPose.detectStart(video, gotHands);
@@ -54,52 +48,7 @@ function draw() {
           noStroke();
           circle(keypoint.x, keypoint.y, 16);
         }
-
-        // Draw lines connecting keypoints in groups
-        stroke(0); // Set line color
-        strokeWeight(2); // Set line thickness
-
-        // Connect keypoints 0 to 4
-        for (let i = 0; i < 4; i++) {
-          line(
-            hand.keypoints[i].x, hand.keypoints[i].y,
-            hand.keypoints[i + 1].x, hand.keypoints[i + 1].y
-          );
-        }
-
-        // Connect keypoints 5 to 8
-        for (let i = 5; i < 8; i++) {
-          line(
-            hand.keypoints[i].x, hand.keypoints[i].y,
-            hand.keypoints[i + 1].x, hand.keypoints[i + 1].y
-          );
-        }
-
-        // Connect keypoints 9 to 12
-        for (let i = 9; i < 12; i++) {
-          line(
-            hand.keypoints[i].x, hand.keypoints[i].y,
-            hand.keypoints[i + 1].x, hand.keypoints[i + 1].y
-          );
-        }
-
-        // Connect keypoints 13 to 16
-        for (let i = 13; i < 16; i++) {
-          line(
-            hand.keypoints[i].x, hand.keypoints[i].y,
-            hand.keypoints[i + 1].x, hand.keypoints[i + 1].y
-          );
-        }
-
-        // Connect keypoints 17 to 20
-        for (let i = 17; i < 20; i++) {
-          line(
-            hand.keypoints[i].x, hand.keypoints[i].y,
-            hand.keypoints[i + 1].x, hand.keypoints[i + 1].y
-          );
-        }
       }
     }
   }
 }
- 
